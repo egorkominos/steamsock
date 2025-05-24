@@ -142,15 +142,14 @@
 <body class="p-4">
 <header class="flex justify-between items-center mb-6">
 <div class="flex items-center">
-<img alt="SteamStar Logo" class="h-8 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB6AYEID-kmUCo83DmPwtqtH-yKoUBgPCtWLkPQ9moH8HwDmABuZzwoZ0qSaTWoAPODOw1sJvJNSA8yZR9Qufmq2IlJ17uSZS5-hXGQP_0RgF8X4PlFQpIzQ3HIq5r2WzC4gMtiIP3bpQsI2n71oDwh2Ot92H_jxaGTROTEtyeft4J3IXDF9Ko4cI--lyf8SOQgXKSPEsPSLw2VxcBeG1EVUZDjQJTzti6OquA-zw-7VfkLzKsvBXp06hFY5CZrl72GFs9uzLnkj0"/>
-<h1 class="text-2xl font-bold text-purple-400">STEAMSTAR</h1>
+<img alt="SteamStar Logo" class="h-8 mr-2" src="https://i.postimg.cc/FspYJjQN/unnamed-Photoroom.png"/>
+<h1 class="text-2xl font-bold text-purple-400">STEAM.TG</h1>
 </div>
 <div class="flex items-center space-x-4 text-xs">
-<a class="flex items-center text-gray-400 hover:text-white" href="#">
-<span class="material-icons text-sm mr-1">gamepad</span> Игры
+
       </a>
 <a class="flex items-center text-red-500 hover:text-red-400" href="#">
-<span class="material-icons text-sm mr-1">block</span> Недоступные в РФ
+<span class="material-icons text-sm mr-1"></span> ОТЗЫВЫ
       </a>
 </div>
 </header>
@@ -165,9 +164,11 @@
 <div class="input-group">
 <span class="material-icons input-icon">person</span>
 <input class="input-field" id="username" placeholder="Введите логин" required="" type="text"/>
-<button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400 hover:text-white underline" type="button">Где взять логин?</button>
+<button onclick="window.open('https://store.steampowered.com/account/', '_blank')" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400 hover:text-white underline" type="button">
+  Где взять логин?
+</button>
 </div>
-<p class="text-xs text-gray-500 mb-4 -mt-3">Если у вас на этом аккаунте до этого не было пополнений прочтите <a class="text-purple-400 underline" href="#">гайд</a>.</p>
+<p class="text-xs text-gray-500 mb-4 -mt-3">Указывайте логин на который придут средства</a>.</p>
 <div class="input-group">
 <span class="material-icons input-icon">currency_ruble</span>
 <input class="input-field" id="amount" placeholder="Введите сумму пополнения" required="" type="number"/>
@@ -228,13 +229,13 @@
 <h3 class="text-lg font-medium mb-4">Способы оплаты:</h3>
 <div class="grid grid-cols-2 gap-4">
 <div class="payment-card active" data-method="sbp">
-<img alt="SBP Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAgS4jmt9Fi-FAqe9UQalpdn1XB_22jrg4Seon_gUeFj6QDDtZl-Us5AeRTjMCIk5c9hq_6XkNvdHtQSUPi1Ocm-_Sz2hNX4HmI42Hh4hyBfD17ou3sNSnA1cBJXkfQ_3tNUpFSHMeKRBSacuJwpFKIDUm-KGwCYZ_UwcWTYkq5nfGSg1qDkywtS8_PEQhoe6FjtQhACar4U4y4z8DVGkx_1PaqFT5qN4zTZmrjNEBJhZ-n-rfDFJZTFU-74S67DgrGRdsgjwkUHQ"/>
-<p class="text-sm">СБП</p>
+<img alt="SBP Logo" src="https://i.postimg.cc/W14wDNCY/image.png"/>
+<p class="text-sm">MIR</p>
 <p class="text-xs text-gray-400">Российские карты</p>
 </div>
 <div class="payment-card" data-method="visa_mc_mir">
-<img alt="Visa Mastercard Mir Logos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_2jtKvTn3V91Br7pVO7mBZHOTe8OmB40nIAjTqhC3jb2M6bR-yeDviI0e_4uciReIm5StnwZh3JuE2Bvdt43Pmx3XnUa3JZjzyqXWwdkrdmmi7823qqTqfdF8AedqbIYZwgCXNpgPD1yYpynqX_ieY18vcN4C-7MO7wXjByEdzJAmySSDh0GylY0cRi3kl8xUJcCA6-527kmO2HrwRS3_j5SsvLkG6BPA6ycOCdEuSgtul4Eoj0z0m-YAkJ30eDc-pEpxWNyxPCA"/>
-<p class="text-sm">VISA/MC/MIR</p>
+<img alt="Visa Mastercard Mir Logos" src="https://i.postimg.cc/fbmty1zg/image.webp"/>
+<p class="text-sm">VISA/MC</p>
 <p class="text-xs text-gray-400">Карты РФ</p>
 </div>
 </div>
@@ -386,4 +387,3 @@
   </script>
 
 </body></html>
-
