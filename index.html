@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STEAMSTAR</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #111827;
+      color: #e5e7eb;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    .input-field {
+      background-color: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      padding-left: 2.5rem;
+      width: 100%;
+      color: #e5e7eb;
+      font-size: 0.875rem;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5);
+    }
+    .input-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+    .btn {
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6);
+      color: white;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #d946ef, #7c3aed);
+    }
+    .btn-secondary {
+      background-color: #374151;
+      color: #e5e7eb;
+      border: none;
+    }
+    .btn-secondary:hover {
+      background-color: #4b5563;
+    }
+    .btn-amount {
+      background-color: #1f2937;
+      border: 1px solid #374151;
+      color: #e5e7eb;
+    }
+    .btn-amount.active {
+      background-color: #ef4444;
+      border-color: #ef4444;
+      color: white;
+    }
+    .info-icon {
+      color: #9ca3af;
+      cursor: pointer;
+    }
+    .promo-badge {
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+      background-color: #ef4444;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.125rem 0.375rem;
+      border-radius: 0.25rem;
+    }
+    .payment-card {
+      background-color: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    .payment-card:hover, .payment-card.active {
+      border-color: #60a5fa;
+    }
+    .payment-card img {
+      height: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background-color: #1f2937;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="p-4">
+<header class="flex justify-between items-center mb-6">
+<div class="flex items-center">
+<img alt="SteamStar Logo" class="h-8 mr-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB6AYEID-kmUCo83DmPwtqtH-yKoUBgPCtWLkPQ9moH8HwDmABuZzwoZ0qSaTWoAPODOw1sJvJNSA8yZR9Qufmq2IlJ17uSZS5-hXGQP_0RgF8X4PlFQpIzQ3HIq5r2WzC4gMtiIP3bpQsI2n71oDwh2Ot92H_jxaGTROTEtyeft4J3IXDF9Ko4cI--lyf8SOQgXKSPEsPSLw2VxcBeG1EVUZDjQJTzti6OquA-zw-7VfkLzKsvBXp06hFY5CZrl72GFs9uzLnkj0"/>
+<h1 class="text-2xl font-bold text-purple-400">STEAMSTAR</h1>
+</div>
+<div class="flex items-center space-x-4 text-xs">
+<a class="flex items-center text-gray-400 hover:text-white" href="#">
+<span class="material-icons text-sm mr-1">gamepad</span> Игры
+      </a>
+<a class="flex items-center text-red-500 hover:text-red-400" href="#">
+<span class="material-icons text-sm mr-1">block</span> Недоступные в РФ
+      </a>
+<a class="flex items-center text-gray-400 hover:text-white" href="#">
+<span class="material-icons text-sm mr-1">card_giftcard</span> Получить подарок
+      </a>
+</div>
+</header>
+<main>
+<section class="mb-8 text-center">
+<h2 class="text-3xl font-bold mb-2">Пополнить баланс <span class="text-purple-400">STEAM</span> в России</h2>
+<p class="text-gray-400 text-sm">Моментальное и недорогое пополнение стим аккаунтов при поддержке надежных партнеров!</p>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+<form id="paymentForm">
+<div class="input-group">
+<span class="material-icons input-icon">person</span>
+<input class="input-field" id="username" placeholder="Введите логин" required="" type="text"/>
+<button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400 hover:text-white underline" type="button">Где взять логин?</button>
+</div>
+<p class="text-xs text-gray-500 mb-4 -mt-3">Если у вас на этом аккаунте до этого не было пополнений прочтите <a class="text-purple-400 underline" href="#">гайд</a>.</p>
+<div class="input-group">
+<span class="material-icons input-icon">currency_ruble</span>
+<input class="input-field" id="amount" placeholder="Введите сумму пополнения" required="" type="number"/>
+<span class="material-icons info-icon absolute right-3 top-1/2 transform -translate-y-1/2">info_outline</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+<button class="btn btn-amount" data-amount="300" type="button">300</button>
+<button class="btn btn-amount" data-amount="1000" type="button">1000</button>
+<button class="btn btn-amount" data-amount="2000" type="button">2000</button>
+<button class="btn btn-amount active relative" data-amount="5000" type="button">
+              5000
+              <span class="promo-badge">-5%</span>
+</button>
+</div>
+<div class="input-group">
+<span class="material-icons input-icon">email</span>
+<input class="input-field" id="email" placeholder="Введите почту" required="" type="email"/>
+<span class="material-icons info-icon absolute right-3 top-1/2 transform -translate-y-1/2">info_outline</span>
+</div>
+<div class="input-group flex">
+<span class="material-icons input-icon">sell</span>
+<input class="input-field flex-grow" id="promo" placeholder="Введите промокод" type="text"/>
+<button class="btn btn-secondary ml-2 px-4" id="applyPromo" type="button">Получить</button>
+</div>
+<div class="text-xs mb-4" id="promoStatus"></div>
+<div class="flex items-center mb-6">
+<input class="form-checkbox h-4 w-4 text-purple-500 bg-gray-700 border-gray-600 rounded focus:ring-purple-600" id="terms" required="" type="checkbox"/>
+<label class="ml-2 text-xs text-gray-400" for="terms">Я ознакомлен и согласен с <a class="text-purple-400 underline" href="#">условиями пользовательского соглашения</a> и <a class="text-purple-400 underline" href="#">правилами возврата</a></label>
+</div>
+<button class="btn btn-primary w-full text-base" type="submit">Пополнить баланс</button>
+</form>
+</div>
+<div class="space-y-6">
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+<div class="flex justify-between items-center mb-3">
+<p class="text-gray-400">Заплатите:</p>
+<p class="font-medium" id="totalPayable">0.00 RUB</p>
+</div>
+<div class="flex justify-between items-center mb-3">
+<p class="text-gray-400">Получите на кошелек:</p>
+<p class="font-medium text-green-400" id="steamWalletAmount">0.00 RUB</p>
+</div>
+<hr class="border-gray-700 my-3"/>
+<div class="flex justify-between items-center text-sm text-gray-500 mb-1">
+<p>Комиссия сервиса <span class="material-icons text-xs info-icon">info_outline</span></p>
+<p id="serviceFee">0.00 RUB</p>
+</div>
+<div class="flex justify-between items-center text-sm text-gray-500 mb-1">
+<p>Банковские издержки <span class="material-icons text-xs info-icon">info_outline</span></p>
+<p id="bankFee">0.00 RUB</p>
+</div>
+<div class="flex justify-between items-center text-sm text-gray-500">
+<p>Скидка по промокоду:</p>
+<p id="promoDiscount">0.00 RUB</p>
+</div>
+</div>
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+<h3 class="text-lg font-medium mb-4">Способы оплаты:</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="payment-card active" data-method="sbp">
+<img alt="SBP Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAgS4jmt9Fi-FAqe9UQalpdn1XB_22jrg4Seon_gUeFj6QDDtZl-Us5AeRTjMCIk5c9hq_6XkNvdHtQSUPi1Ocm-_Sz2hNX4HmI42Hh4hyBfD17ou3sNSnA1cBJXkfQ_3tNUpFSHMeKRBSacuJwpFKIDUm-KGwCYZ_UwcWTYkq5nfGSg1qDkywtS8_PEQhoe6FjtQhACar4U4y4z8DVGkx_1PaqFT5qN4zTZmrjNEBJhZ-n-rfDFJZTFU-74S67DgrGRdsgjwkUHQ"/>
+<p class="text-sm">СБП</p>
+<p class="text-xs text-gray-400">Российские карты</p>
+</div>
+<div class="payment-card" data-method="visa_mc_mir">
+<img alt="Visa Mastercard Mir Logos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_2jtKvTn3V91Br7pVO7mBZHOTe8OmB40nIAjTqhC3jb2M6bR-yeDviI0e_4uciReIm5StnwZh3JuE2Bvdt43Pmx3XnUa3JZjzyqXWwdkrdmmi7823qqTqfdF8AedqbIYZwgCXNpgPD1yYpynqX_ieY18vcN4C-7MO7wXjByEdzJAmySSDh0GylY0cRi3kl8xUJcCA6-527kmO2HrwRS3_j5SsvLkG6BPA6ycOCdEuSgtul4Eoj0z0m-YAkJ30eDc-pEpxWNyxPCA"/>
+<p class="text-sm">VISA/MC/MIR</p>
+<p class="text-xs text-gray-400">Карты РФ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="modal" id="paymentModal">
+<div class="modal-content">
+<h3 class="text-xl font-semibold mb-4 text-purple-400">Ожидание оплаты</h3>
+<p class="text-gray-300 mb-2">Пожалуйста, переведите точную сумму на указанную карту в течение:</p>
+<div class="text-3xl font-bold text-red-500 mb-4" id="timer">05:00</div>
+<p class="text-gray-300 mb-1">Номер карты для перевода:</p>
+<div class="bg-gray-700 p-3 rounded-md mb-4">
+<p class="text-lg font-mono text-white tracking-wider" id="cardNumber">2200 9093 6157 4904</p>
+</div>
+<p class="text-gray-300 mb-1">Сумма к оплате:</p>
+<p class="text-2xl font-bold text-green-400 mb-6" id="modalAmount">0.00 RUB</p>
+<p class="text-xs text-gray-500">После успешного перевода средства будут зачислены на ваш аккаунт.</p>
+</div>
+</div>
+<script>
+    const amountInput = document.getElementById('amount');
+    const amountButtons = document.querySelectorAll('.btn-amount');
+    const totalPayableEl = document.getElementById('totalPayable');
+    const steamWalletAmountEl = document.getElementById('steamWalletAmount');
+    const serviceFeeEl = document.getElementById('serviceFee');
+    const bankFeeEl = document.getElementById('bankFee'); // Assuming bank fee is part of service fee or 0 for now
+    const promoDiscountEl = document.getElementById('promoDiscount');
+    const promoInput = document.getElementById('promo');
+    const applyPromoButton = document.getElementById('applyPromo');
+    const promoStatusEl = document.getElementById('promoStatus');
+    const paymentForm = document.getElementById('paymentForm');
+    const paymentModal = document.getElementById('paymentModal');
+    const modalAmountEl = document.getElementById('modalAmount');
+    const timerEl = document.getElementById('timer');
+    const paymentCards = document.querySelectorAll('.payment-card');
+    let currentPromoDiscount = 0;
+    const BASE_COMMISSION_RATE = 0.07; // 7%
+    function calculateFees(amount) {
+      if (isNaN(amount) || amount <= 0) {
+        totalPayableEl.textContent = '0.00 RUB';
+        steamWalletAmountEl.textContent = '0.00 RUB';
+        serviceFeeEl.textContent = '0.00 RUB';
+        bankFeeEl.textContent = '0.00 RUB'; // Assuming bank fee part of service fee
+        promoDiscountEl.textContent = '0.00 RUB';
+        return { total: 0, steamAmount: 0 };
+      }
+      const steamAmount = parseFloat(amount);
+      let totalWithCommission = steamAmount * (1 + BASE_COMMISSION_RATE);
+      let discountAmount = 0;
+      if (currentPromoDiscount > 0) {
+        discountAmount = totalWithCommission * currentPromoDiscount;
+        totalWithCommission -= discountAmount;
+      }
+      const serviceFee = steamAmount * BASE_COMMISSION_RATE - discountAmount;
+      totalPayableEl.textContent = `${totalWithCommission.toFixed(2)} RUB`;
+      steamWalletAmountEl.textContent = `${steamAmount.toFixed(2)} RUB`;
+      serviceFeeEl.textContent = `${(serviceFee > 0 ? serviceFee : 0).toFixed(2)} RUB`; // Service fee cannot be negative
+      bankFeeEl.textContent = `0.00 RUB`; // As per original screenshot
+      promoDiscountEl.textContent = `${discountAmount.toFixed(2)} RUB`;
+      return { total: totalWithCommission, steamAmount: steamAmount };
+    }
+    amountInput.addEventListener('input', () => {
+      amountButtons.forEach(btn => btn.classList.remove('active'));
+      const amountValue = parseFloat(amountInput.value);
+      calculateFees(amountValue);
+    });
+    amountButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        amountButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const amountValue = parseFloat(button.dataset.amount);
+        amountInput.value = amountValue;
+        calculateFees(amountValue);
+      });
+    });
+    // Set initial active amount if any
+    const initialActiveButton = document.querySelector('.btn-amount.active');
+    if (initialActiveButton) {
+        const initialAmount = parseFloat(initialActiveButton.dataset.amount);
+        amountInput.value = initialAmount;
+        calculateFees(initialAmount);
+    }
+    applyPromoButton.addEventListener('click', () => {
+      const promoCode = promoInput.value.trim().toUpperCase();
+      if (promoCode === 'CS812') {
+        currentPromoDiscount = 0.03; // 3% discount
+        promoStatusEl.textContent = 'Промокод CS812 применен! Скидка 3%.';
+        promoStatusEl.classList.remove('text-red-500');
+        promoStatusEl.classList.add('text-green-500');
+      } else if (promoCode === '') {
+        currentPromoDiscount = 0;
+        promoStatusEl.textContent = '';
+      } else {
+        currentPromoDiscount = 0;
+        promoStatusEl.textContent = 'Неверный промокод.';
+        promoStatusEl.classList.remove('text-green-500');
+        promoStatusEl.classList.add('text-red-500');
+      }
+      calculateFees(parseFloat(amountInput.value));
+    });
+    let timerInterval;
+    function startTimer(duration, display) {
+      let timer = duration, minutes, seconds;
+      clearInterval(timerInterval); // Clear any existing timer
+      timerInterval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+          clearInterval(timerInterval);
+          display.textContent = "Время вышло!";
+          // Optionally close modal or show other message
+        }
+      }, 1000);
+    }
+    paymentForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Basic validation
+      const username = document.getElementById('username').value;
+      const amount = parseFloat(amountInput.value);
+      const email = document.getElementById('email').value;
+      const terms = document.getElementById('terms').checked;
+      if (!username || isNaN(amount) || amount <= 0 || !email || !terms) {
+        alert('Пожалуйста, заполните все обязательные поля и согласитесь с условиями.');
+        return;
+      }
+      const calculationResult = calculateFees(amount);
+      modalAmountEl.textContent = `${calculationResult.total.toFixed(2)} RUB`;
+      paymentModal.classList.add('open');
+      startTimer(5 * 60, timerEl); // 5 minutes timer
+    });
+    paymentModal.addEventListener('click', (event) => {
+        if (event.target === paymentModal) { // Click on backdrop
+            paymentModal.classList.remove('open');
+            clearInterval(timerInterval);
+        }
+    });
+    paymentCards.forEach(card => {
+        card.addEventListener('click', () => {
+            paymentCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            // You can store selected method here if needed
+        });
+    });
+  </script>
+
+</body></html>
